@@ -1,6 +1,23 @@
 import pygame
 
 
+#How to Use:
+
+# create new button with the specified traits: 
+# list<button>, button text, font, color, size(x,y), and position(x,y)
+# then use addfunc() to assign an action to this button.
+
+# to display the button:
+# for i in list<Button>: #list you created to store Buttons, can be named whatever
+#     screen.blit(i.surf, i.rectangle)
+
+# To check collisisons:
+# if event.type == pygame.MOUSEBUTTONDOWN:
+#             mpos = pygame.mouse.get_pos()
+#             for i in list<Button>: 
+#                 if(i.rectangle.collidepoint(mpos)):
+#                     i.func()
+
 class Button():
     rectangle = None
 
