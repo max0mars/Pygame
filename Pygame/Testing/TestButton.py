@@ -19,7 +19,7 @@ cdex = random.randrange(0,7)
 
 b = Button(Buttons, "Change Color", font1, 'gray', (200, 50), (400,200))
 
-def bfunc():
+def bfunc(): #when accessing a variable outside the function, must use 'global' key word
     global cdex
     last = cdex
     while(last == cdex):
