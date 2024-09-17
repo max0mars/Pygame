@@ -36,6 +36,8 @@ testButton = Button(buttons, 'PLAY', font1, 'gray', (buttonx,buttony), (400, 200
 def play():
     global state
     state = 1
+    global visibleDudes 
+    visibleDudes = [dude4.copy(), dude3.copy()]
 
 testButton.addfunc(play)
 
@@ -46,7 +48,7 @@ dude3 = BANK('Ted', 500, 50, 15)
 dude4 = BANK('Bill', 2000, 50, 4)
 dude5 = BANK('Mack', 10000, 300, 3)
 dudes = [dude, dude2, dude3, dude4, dude5]
-visibleDudes = [dudes[2].copy(), dudes[4].copy()]
+visibleDudes = [] * 2
 dudesurf = [None] * 2
 
 # def checkMoney(d):
@@ -90,12 +92,16 @@ while running:
     else:
         for n in range(2):
             if(visibleDudes[n].money <= 0):#check if dude is out of money
-                index = random.randrange(0,5)
-                visibleDudes[n] = dudes[index].copy()
-                if(n == 0):
-                    visibleDudes[1].elims +=1
-                else:
-                    visibleDudes[0].elims +=1
+
+                state = 0
+                continue
+
+                # index = random.randrange(0,5)
+                # visibleDudes[n] = dudes[index].copy()
+                # if(n == 0):
+                #     visibleDudes[1].elims +=1
+                # else:
+                #     visibleDudes[0].elims +=1
             
             visibleDudes[n].attackCount += dt/1000 * visibleDudes[n].speed
 
