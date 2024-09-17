@@ -9,7 +9,7 @@ import pygame
 
 # to display the button:
 # for i in list<Button>: #list you created to store Buttons, can be named whatever
-#     screen.blit(i.surf, i.rectangle)
+#     screen.blit(i.surf(), i.rectangle)
 
 # To check collisisons:
 # if event.type == pygame.MOUSEBUTTONDOWN:
