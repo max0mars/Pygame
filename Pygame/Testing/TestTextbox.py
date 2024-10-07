@@ -23,15 +23,9 @@ while running:
             running = False
             pygame.quit()
             exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mpos = pygame.mouse.get_pos()
-            for i in textboxes:
-                if(i.rectangle.collidepoint(mpos)):
-                    i.selected = True
-                else:
-                    i.selected = False
+        Textbox.handleEvent(textboxes, event)
     
     for i in textboxes:
-        screen.blit(i.surf(), i.rectangle)
+        i.draw(screen)
     dt = clock.tick(60)
     pygame.display.update()
