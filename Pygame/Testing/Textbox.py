@@ -55,7 +55,8 @@ class Textbox():
                         if(event.key < 65 or event.key > 122):
                             if(event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE):
                                 i.text = i.text[:-1]
-                            continue
+                            if(event.key == pygame.K_SPACE):
+                                i.text += ' '
                         else :     
                             i.text += chr(event.key)
     
