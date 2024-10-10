@@ -37,6 +37,9 @@ while running:
         Button.handleEvent(Buttons, event)
 
     screen.fill(Colors[cdex])
-    screen.blit(b.surf(), b.rectangle)
+    
+    for i in Buttons:
+        i.draw(screen)
+
     dt = clock.tick(60)
     pygame.display.update()

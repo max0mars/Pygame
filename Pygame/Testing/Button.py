@@ -1,6 +1,3 @@
-import pygame
-
-
 #How to Use:
 
 # create new button with the specified traits: 
@@ -8,16 +5,13 @@ import pygame
 # then use addfunc() to assign an action to this button.
 
 # to display the button:
-# for i in list<Button>: #list you created to store Buttons, can be named whatever
-#     screen.blit(i.surf(), i.rectangle)
+# for i in list<Button>: 
+#     i.draw()
 
-# To check collisisons:
-# if event.type == pygame.MOUSEBUTTONDOWN:
-#             mpos = pygame.mouse.get_pos()
-#             for i in list<Button>: 
-#                 if(i.rectangle.collidepoint(mpos)):
-#                     i.func()
+# for events:
+# call Button.handleEvent(list, event)
 
+import pygame
 class Button():
     rectangle = None
 
@@ -27,21 +21,28 @@ class Button():
         self.color = color
         self.pos = pos
         self.font = font
+        self.active = True
+        self.rectangle = pygame.Rect(size, pos)
+        self.rectangle.center = (pos)
         list.append(self)
-        self.surf()
 
-    def surf(self):
+    def draw(self, screen):
+        if(not self.active):
+            return
         sc = pygame.Surface((self.size[0], self.size[1]))
         sc.fill(self.color)
         txt = self.font.render(self.txt, True, 'Black')
         rect = txt.get_rect(center = (self.size[0]/2, self.size[1]/2))
         sc.blit(txt, rect)
 
-        
-        #sc.convert_alpha()
         self.rectangle = sc.get_rect(center = self.pos)
-        return sc
+        screen.blit(sc, self.rectangle)
 
+
+    def enable(self):
+        self.active = True
+    def disable(self):
+        self.active = False
     def func(self):
         return self.function()
     
