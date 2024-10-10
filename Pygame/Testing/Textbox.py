@@ -9,12 +9,12 @@ class Textbox():
     selected = False
 
 
-    def __init__(self, list:list, font: pygame.font, size:tuple, pos: tuple):
+    def __init__(self, list:list, font: pygame.font, size:tuple, pos: tuple, **kwargs):
         self.font = font
         self.size = size
         self.pos = pos
         list.append(self)
-
+        self.default = kwargs.get("Default", None)
         self.txt_surf = self.font.render(self.text, True, 'Black')
         self.rect = pygame.Rect(size, pos)
         self.rect.center = (pos)
@@ -22,7 +22,10 @@ class Textbox():
     def surf(self):
         sc = pygame.Surface((self.size[0], self.size[1]))
         sc.fill(selCol if self.selected else unselCol)
-        txt = self.font.render(self.text, True, 'Black')
+        if(self.text == ''):
+            txt = self.font.render(self.default, True, 'Black')
+        else:
+            txt = self.font.render(self.text, True, 'Black')
         rect = txt.get_rect(center = (self.size[0]/2, self.size[1]/2))
         sc.blit(txt,rect)
 
@@ -33,7 +36,10 @@ class Textbox():
     def draw(self, screen):
         sc = pygame.Surface((self.size[0], self.size[1]))
         sc.fill(selCol if self.selected else unselCol)
-        txt = self.font.render(self.text, True, 'Black')
+        if(self.text == ''):
+            txt = self.font.render(self.default, True, 'Black')
+        else:
+            txt = self.font.render(self.text, True, 'Black')
         rect = txt.get_rect(center = (self.size[0]/2, self.size[1]/2))
         sc.blit(txt,rect)
 
