@@ -51,12 +51,6 @@ dudes = [dude, dude2, dude3, dude4, dude5]
 visibleDudes = [] * 2
 dudesurf = [None] * 2
 
-# def checkMoney(d):
-#     for i in d:
-#         if(i.money <= 0):
-#             i = None
-#             print("replaced")
-
 
 
 
@@ -70,25 +64,12 @@ while running:
             running = False
             pygame.quit()
             exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mpos = pygame.mouse.get_pos()
-            if(state == 1):
-                for i in visibleDudes:
-                    if(i.rectangle.collidepoint(mpos)):
-                        i.money -= 10
-            elif(state == 0):
-                #check buttons
-                for i in buttons:
-                    if(i.rectangle.collidepoint(mpos)):
-                        i.func()
-
-
-
+        
     screen.fill("white")
     
     if(state == 0):
         for i in buttons: #display all buttons
-            screen.blit(i.surf(), i.rectangle)
+            i.draw()
     else:
         for n in range(2):
             if(visibleDudes[n].money <= 0):#check if dude is out of money

@@ -52,5 +52,7 @@ class Button():
     def handleEvent(list:list, event:pygame.event):
         if(event.type == pygame.MOUSEBUTTONDOWN):
             for i in list:
+                if(not i.active):
+                    continue
                 if(i.rectangle.collidepoint(event.pos)):
                     i.func()

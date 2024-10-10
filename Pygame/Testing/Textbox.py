@@ -37,6 +37,7 @@ class Textbox():
         self.active = True
     def disable(self):
         self.active = False
+        self.selected = False
 
     def draw(self, screen):
         if(not self.active):
@@ -56,20 +57,22 @@ class Textbox():
     def handleEvent(list:list, event:pygame.event): #handles the events applicable to textbox
         if(event.type == pygame.MOUSEBUTTONDOWN):
             for i in list:
-                    if(i.rectangle.collidepoint(event.pos)):
-                        i.selected = True
-                    else:
-                        i.selected = False
+                if(not i.active):
+                    continue
+                if(i.rectangle.collidepoint(event.pos)):
+                    i.selected = True
+                else:
+                    i.selected = False
         if(event.type == pygame.KEYDOWN):
-             for i in list:
-                    if(not i.selected):
-                        continue
-                    else:
-                        if(event.key < 65 or event.key > 122):
-                            if(event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE):
-                                i.text = i.text[:-1]
-                            if(event.key == pygame.K_SPACE):
-                                i.text += ' '
-                        else :     
-                            i.text += chr(event.key)
+            for i in list:
+                if(not i.selected or not i.active):
+                    continue
+                else:
+                    if(event.key < 65 or event.key > 122):
+                        if(event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE):
+                            i.text = i.text[:-1]
+                        if(event.key == pygame.K_SPACE):
+                            i.text += ' '
+                    else :     
+                        i.text += chr(event.key)
     
