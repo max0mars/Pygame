@@ -51,41 +51,26 @@ dudes = [dude, dude2, dude3, dude4, dude5]
 visibleDudes = [] * 2
 dudesurf = [None] * 2
 
-
-
-
-
-
-
-
+    
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
             exit()
-        
+        Button.handleEvent(buttons, event)
+
     screen.fill("white")
     
     if(state == 0):
         for i in buttons: #display all buttons
-            i.draw()
+            i.draw(screen)
     else:
         for n in range(2):
             if(visibleDudes[n].money <= 0):#check if dude is out of money
-
                 state = 0
                 continue
-
-                # index = random.randrange(0,5)
-                # visibleDudes[n] = dudes[index].copy()
-                # if(n == 0):
-                #     visibleDudes[1].elims +=1
-                # else:
-                #     visibleDudes[0].elims +=1
-            
             visibleDudes[n].attackCount += dt/1000 * visibleDudes[n].speed
-
             if(visibleDudes[n].attackCount > 10):
                 visibleDudes[n].attackCount = 0
                 if(n == 0):
@@ -96,6 +81,9 @@ while running:
             dudesurf[n] = visibleDudes[n].surf(font1)#get the surface
             visibleDudes[n].rectangle = dudesurf[n].get_rect(center = (200 + 400 * n, 200))# set the rect
             screen.blit(dudesurf[n], visibleDudes[n].rectangle)#send to the screen
+
+            
+            
 
     dt = clock.tick(60)
     pygame.display.update()
