@@ -34,11 +34,7 @@ while running:
             running = False
             pygame.quit()
             exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mpos = pygame.mouse.get_pos()
-            for i in Buttons:
-                if(i.rectangle.collidepoint(mpos)):
-                    i.func()
+        Button.handleEvent(Buttons, event)
 
     screen.fill(Colors[cdex])
     screen.blit(b.surf(), b.rectangle)

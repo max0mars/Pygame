@@ -14,7 +14,6 @@ dt = 0
 textboxes = []
 
 textbox = Textbox(textboxes, font1, (400,50), (400,150), Default='Enter your name here')
-textbox2 = Textbox(textboxes, font1, (400,50), (400,250))
 
 while running:
     screen.fill('green')
@@ -27,6 +26,6 @@ while running:
 
     for i in textboxes:
         i.draw(screen)
-        
+
     dt = clock.tick(60)
     pygame.display.update()
