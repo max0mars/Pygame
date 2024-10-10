@@ -24,8 +24,9 @@ while running:
             pygame.quit()
             exit()
         Textbox.handleEvent(textboxes, event)
-    
+
     for i in textboxes:
         i.draw(screen)
+        
     dt = clock.tick(60)
     pygame.display.update()

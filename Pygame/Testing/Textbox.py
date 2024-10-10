@@ -18,6 +18,7 @@ class Textbox():
         self.txt_surf = self.font.render(self.text, True, 'Black')
         self.rect = pygame.Rect(size, pos)
         self.rect.center = (pos)
+        self.active = True
 
     def surf(self):
         sc = pygame.Surface((self.size[0], self.size[1]))
@@ -32,8 +33,14 @@ class Textbox():
         self.rectangle = sc.get_rect(center = self.pos)
         return sc
     
-    
+    def enable(self):
+        self.active = True
+    def disable(self):
+        self.active = False
+
     def draw(self, screen):
+        if(not self.active):
+            return
         sc = pygame.Surface((self.size[0], self.size[1]))
         sc.fill(selCol if self.selected else unselCol)
         if(self.text == ''):
