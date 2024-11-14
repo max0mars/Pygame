@@ -28,7 +28,7 @@ player_pos = pygame.Vector2(80, 80)
 
 while running:
     # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
+    # pygame.QUIT event means the user clicked X to close the window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
