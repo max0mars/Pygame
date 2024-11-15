@@ -27,13 +27,13 @@ class Textbox():
         self.size = size
         self.pos = pos
         list.append(self)
-        self.default = kwargs.get("Default", None)
-        self.readOnly = kwargs.get("ReadOnly", False)
+        self.default = kwargs.get("default", None)
+        self.readOnly = kwargs.get("readOnly", False)
         self.color = kwargs.get("color", None)
         self.txt_surf = self.font.render(self.text, True, 'Black')
         self.rectangle = pygame.Rect(size, pos)
         self.rectangle.center = (pos)
-        self.active = True
+        self.active = kwargs.get("active", True)
     
     def enable(self):
         self.active = True
