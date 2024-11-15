@@ -2,6 +2,8 @@ import pygame
 from sys import exit
 from TestClass import BANK
 from Button import Button
+from Textbox import Textbox
+
 import random
 
 pygame.init()
@@ -33,18 +35,26 @@ def testFunc():
 buttons = []
 testButton = Button(buttons, 'PLAY', font1, 'gray', (buttonx,buttony), (400, 200))
 
+textboxes = []
+namebox = Textbox(textboxes, font1, (400,50), (400,150), Default='Enter your name here', color=(220,220,220))
+
 def play():
     global state
     state = 1
-    global visibleDudes 
-    visibleDudes = [dude4.copy(), dude3.copy()]
+    global visibleDudes
+    testButton.active = False
+    namebox.active = False
+    player.name = namebox.text
+
+    visibleDudes = [player.copy(), dude3.copy()]
 
 testButton.addfunc(play)
 
+player = BANK("Player", 500, 25, 20)
 
 dude = BANK('Fred', 25, 10, 10)
 dude2 = BANK('Ned', 200, 30, 8)
-dude3 = BANK('Ted', 500, 50, 15)
+dude3 = BANK('Ted', 500, 50, 5)
 dude4 = BANK('Bill', 2000, 50, 4)
 dude5 = BANK('Mack', 10000, 300, 3)
 dudes = [dude, dude2, dude3, dude4, dude5]
@@ -59,13 +69,16 @@ while running:
             pygame.quit()
             exit()
         Button.handleEvent(buttons, event)
+        Textbox.handleEvent(textboxes, event)
 
     screen.fill("white")
     
-    if(state == 0):
-        for i in buttons: #display all buttons
-            i.draw(screen)
-    else:
+    for i in buttons: #display all buttons
+        i.draw(screen)
+    for i in textboxes:
+        i.draw(screen)
+
+    if(state == 1):
         for n in range(2):
             if(visibleDudes[n].money <= 0):#check if dude is out of money
                 state = 0

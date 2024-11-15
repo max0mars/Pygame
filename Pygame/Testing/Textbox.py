@@ -29,6 +29,7 @@ class Textbox():
         list.append(self)
         self.default = kwargs.get("Default", None)
         self.readOnly = kwargs.get("ReadOnly", False)
+        self.color = kwargs.get("color", None)
         self.txt_surf = self.font.render(self.text, True, 'Black')
         self.rectangle = pygame.Rect(size, pos)
         self.rectangle.center = (pos)
@@ -44,7 +45,7 @@ class Textbox():
         if(not self.active):
             return
         sc = pygame.Surface((self.size[0], self.size[1]))
-        sc.fill(selCol if self.selected else unselCol)
+        sc.fill(selCol if self.selected else (self.color if self.color else unselCol))
         if(self.text == ''):
             txt = self.font.render(self.default, True, 'Black')
         else:
