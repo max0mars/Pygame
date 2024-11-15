@@ -39,6 +39,9 @@ textboxes = []
 namebox = Textbox(textboxes, font1, (400,50), (400,150), Default='Enter your name here', color=(220,220,220))
 
 def play():
+    if(namebox.text == ''):
+        namebox.default = 'Pls Enter Name!'
+        return
     global state
     state = 1
     global visibleDudes
