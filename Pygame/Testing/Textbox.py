@@ -28,6 +28,7 @@ class Textbox():
         self.pos = pos
         list.append(self)
         self.default = kwargs.get("Default", None)
+        self.readOnly = kwargs.get("ReadOnly", False)
         self.txt_surf = self.font.render(self.text, True, 'Black')
         self.rectangle = pygame.Rect(size, pos)
         self.rectangle.center = (pos)
@@ -57,7 +58,7 @@ class Textbox():
     def handleEvent(list:list, event:pygame.event): #handles the events applicable to textbox
         if(event.type == pygame.MOUSEBUTTONDOWN):
             for i in list:
-                if(not i.active):
+                if(not i.active or i.readOnly):
                     continue
                 if(i.rectangle.collidepoint(event.pos)):
                     i.selected = True
@@ -65,7 +66,7 @@ class Textbox():
                     i.selected = False
         if(event.type == pygame.KEYDOWN):
             for i in list:
-                if(not i.selected or not i.active):
+                if(not i.selected or not i.active or i.readOnly):
                     continue
                 else:
                     if(event.key < 65 or event.key > 122):

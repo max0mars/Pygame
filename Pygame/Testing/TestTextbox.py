@@ -13,7 +13,7 @@ dt = 0
 
 textboxes = []
 
-textbox = Textbox(textboxes, font1, (400,50), (400,150), Default='Enter your name here')
+textbox = Textbox(textboxes, font1, (400,50), (400,150), Default='Enter your name here', ReadOnly=True)
 
 while running:
     screen.fill('green')
