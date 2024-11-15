@@ -34,7 +34,7 @@ class BANK():
         sc.set_colorkey((255,0,255))
         sc.fill((255,0,255))
         txt = font.render(self.name, True, 'Black')
-        rect = txt.get_rect(midbottom = (sizex/2, sizey))
+        rect = txt.get_rect(midbottom = (sizex/2, sizey - 5))
 
         percent = self.money/self.total
         left = (0, rect.centery)
