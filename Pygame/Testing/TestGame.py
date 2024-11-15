@@ -36,7 +36,7 @@ buttons = []
 testButton = Button(buttons, 'PLAY', font1, 'gray', (buttonx,buttony), (400, 200))
 
 textboxes = []
-namebox = Textbox(textboxes, font1, (400,50), (400,150), Default='Enter your name here', color=(220,220,220))
+namebox = Textbox(textboxes, font1, (400,50), (400,150), default='Enter your name here', color=(220,220,220))
 
 def play():
     if(namebox.text == ''):
@@ -50,6 +50,7 @@ def play():
     player.name = namebox.text
 
     visibleDudes = [player.copy(), dude3.copy()]
+    shopText.active = True
 
 testButton.addfunc(play)
 
@@ -64,7 +65,12 @@ dudes = [dude, dude2, dude3, dude4, dude5]
 visibleDudes = [] * 2
 dudesurf = [None] * 2
 
-    
+
+shop = pygame.Surface((800,400))
+shop.fill("red")
+shopText = Textbox(textboxes, font1, (400,50), (400,150), default='Shop', color=(220,220,220), readOnly=True, active=False)
+shopText.draw(shop)
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -82,21 +88,23 @@ while running:
         i.draw(screen)
 
     if(state == 1):
-        for n in range(2):
-            if(visibleDudes[n].money <= 0):#check if dude is out of money
-                state = 0
-                continue
-            visibleDudes[n].attackCount += dt/1000 * visibleDudes[n].speed
-            if(visibleDudes[n].attackCount > 10):
-                visibleDudes[n].attackCount = 0
-                if(n == 0):
-                    visibleDudes[1].money -= visibleDudes[0].debt
-                else:
-                    visibleDudes[0].money -= visibleDudes[1].debt
+        shopText.draw(shop)
+        screen.blit(shop,(0,0))
+        # for n in range(2):
+        #     if(visibleDudes[n].money <= 0):#check if dude is out of money
+        #         state = 0
+        #         continue
+        #     visibleDudes[n].attackCount += dt/1000 * visibleDudes[n].speed
+        #     if(visibleDudes[n].attackCount > 10):
+        #         visibleDudes[n].attackCount = 0
+        #         if(n == 0):
+        #             visibleDudes[1].money -= visibleDudes[0].debt
+        #         else:
+        #             visibleDudes[0].money -= visibleDudes[1].debt
 
-            dudesurf[n] = visibleDudes[n].surf(font1)#get the surface
-            visibleDudes[n].rectangle = dudesurf[n].get_rect(center = (200 + 400 * n, 200))# set the rect
-            screen.blit(dudesurf[n], visibleDudes[n].rectangle)#send to the screen
+        #     dudesurf[n] = visibleDudes[n].surf(font1)#get the surface
+        #     visibleDudes[n].rectangle = dudesurf[n].get_rect(center = (200 + 400 * n, 200))# set the rect
+        #     screen.blit(dudesurf[n], visibleDudes[n].rectangle)#send to the screen
 
             
             
